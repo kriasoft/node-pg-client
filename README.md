@@ -47,7 +47,6 @@ export default router;
 
 ### License
 
-The MIT License © 2016 Kriasoft, LLC. All rights reserved.
-
----
-Made with ♥ by Konstantin Tarkus ([@koistya](https://twitter.com/koistya)) and [contributors](https://github.com/kriasoft/node-pg-client/graphs/contributors)
+The MIT License © 2016 Kriasoft, LLC. All rights reserved. Made with ♥ by
+Konstantin Tarkus ([@koistya](https://twitter.com/koistya)) and
+[contributors](https://github.com/kriasoft/node-pg-client/graphs/contributors)
