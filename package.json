@@ -1,6 +1,6 @@
 {
   "name": "pg-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Promise-based wrapper for node-postgres library designed for easy use with ES7 async/await.",
   "repository": "kriasoft/node-pg-client",
   "author": "Kriasoft <support@kriasoft.com> (http://www.kriasoft.com)",
