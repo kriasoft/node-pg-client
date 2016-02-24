@@ -27,10 +27,10 @@ import { connectionString } from '../config';
 const router = new Router();
 
 router.get('/users', (req, res, next) => {
-  db.connect(connectionString, async ({ query }) => {
-    const result = await query('SELECT id, email FROM users WHERE id = $1', 123);
+  db.connect(connectionString, async (client) => {
+    const result = await client.query('SELECT id, email FROM users WHERE id = $1', 123);
     if (result.rowCount) {
-      res.send(result.rows);
+      res.send(result.rows[0]);
     } else {
       res.sendStatus(404);
     }

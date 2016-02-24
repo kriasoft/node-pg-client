@@ -15,15 +15,15 @@ import Client from './Client';
  * Promise-based wrapper for `node-postgres`
  * https://github.com/brianc/node-postgres/wiki/pg
  */
-function Database(db) {
-  this._db = db;
-  this.defaults = db.defaults;
+function Database(pg) {
+  this.pg = pg;
+  this.defaults = pg.defaults;
 }
 
 Database.prototype.connect = function connect(connString, callback) {
   return new Promise((resolve, reject) => {
     const options = typeof connString === 'function' ? connString() : connString;
-    this._db.connect(options, (err, client, done) => {
+    this.pg.connect(options, (err, client, done) => {
       if (err) {
         if (client) {
           // Remove the client from the connection pool.
@@ -31,20 +31,20 @@ Database.prototype.connect = function connect(connString, callback) {
         }
         reject(err);
       } else {
-        resolve(callback(new Client(client)).then((result) => {
+        callback(new Client(client)).then(result => {
           done();
-          return result;
-        }).catch(error => {
+          resolve(result);
+        }, error => {
           done(client);
-          throw error;
-        }));
+          reject(error);
+        });
       }
     });
   });
 };
 
 Database.prototype.end = function end() {
-  this._db.end();
+  this.pg.end();
 };
 
 export default Database;
