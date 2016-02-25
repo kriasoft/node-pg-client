@@ -18,6 +18,8 @@ import Client from './Client';
 function Database(pg) {
   this.pg = pg;
   this.defaults = pg.defaults;
+  this.connect = this.connect.bind(this);
+  this.end = this.connect.end(this);
 }
 
 Database.prototype.connect = function connect(connString, callback) {

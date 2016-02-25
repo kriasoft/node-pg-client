@@ -16,6 +16,8 @@ import Promise from 'bluebird';
  */
 function Client(client) {
   this._client = client;
+  this.query = this.query.bind(this);
+  this.end = this.end.bind(this);
 }
 
 Client.prototype.query = function query(sql, ...args) {
